@@ -41,7 +41,7 @@ public class UserBaseRepositoryTest {
     @Test
     public void findListByPage() {
         Pageable pageable = PageRequest.of(0,3);
-        Page<UserBaseDO> personRepositoryBy = userBaseRepository.findList(pageable,"张三日子",new Date());
+        Page<UserBaseDO> personRepositoryBy = userBaseRepository.findList(pageable,"张三日子",null);
         log.info("\n {}",personRepositoryBy.toString());
         personRepositoryBy.getContent().forEach(userBaseDO -> {
             log.info("\n {}",userBaseDO.toString());
@@ -55,8 +55,13 @@ public class UserBaseRepositoryTest {
     @Test
     public void findListByIds() {
         List<UserBaseDO> userBaseDOListQ = userBaseRepository.findListByIds("test",null,null);
-
+        userBaseDOListQ.forEach(userBaseDO -> {
+            log.info("\n {}",userBaseDO.toString());
+        });
         List<UserBaseDO> userBaseDOList = userBaseRepository.findListByIds("test",new Date(), Arrays.asList(1L,2L));
+        userBaseDOList.forEach(userBaseDO -> {
+            log.info("\n {}",userBaseDO.toString());
+        });
 
     }
 
