@@ -3,6 +3,7 @@ package com.vonchange.nine.demo.config;
 
 import com.vonchange.jdbc.abstractjdbc.model.DataSourceWrapper;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -29,8 +30,8 @@ public class DBConfig implements InitializingBean {
 
 
     @Bean
-    public DataSourceWrapper readDataSourceWrapper(DataSource dataSourceRead) {
-        return new DataSourceWrapper(dataSourceRead,"dataSourceRead");
+    public DataSourceWrapper readDataSourceWrapper(@Qualifier("dataSourceRead")DataSource dataSource) {
+        return new DataSourceWrapper(dataSource,"dataSourceRead");
     }
 
     @Override

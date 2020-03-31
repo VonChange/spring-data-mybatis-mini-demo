@@ -1,19 +1,20 @@
 package com.vonchange.nine.demo.dao;
 
 import com.vonchange.nine.demo.domain.UserBaseDO;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import com.vonchange.spring.data.mybatis.mini.jdbc.repository.query.BatchUpdate;
 import com.vonchange.spring.data.mybatis.mini.jdbc.repository.query.ConfigLocation;
+import com.vonchange.spring.data.mybatis.mini.jdbc.repository.query.DataSourceKey;
 import com.vonchange.spring.data.mybatis.mini.jdbc.repository.query.ReadDataSource;
 import com.vonchange.spring.data.mybatis.mini.jdbc.repository.support.BaseRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 
 import java.util.Date;
 import java.util.List;
 
 @ConfigLocation("sql.sql")
-//@DataSourceKey("dataSourceRead")
+@DataSourceKey("dataSourceRead")
 public interface UserBaseRepository extends BaseRepository<UserBaseDO, Long> {
 
   @ReadDataSource

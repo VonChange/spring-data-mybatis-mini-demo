@@ -62,7 +62,7 @@
         <dependency>
             <groupId>com.vonchange.common</groupId>
             <artifactId>spring-data-mybatis-mini</artifactId>
-            <version>1.5-SNAPSHOT</version>
+            <version>1.6.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.h2database</groupId>
