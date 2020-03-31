@@ -13,7 +13,10 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-data-mybatis-mini-demo</name>
     <description>spring-data-mybatis-mini-demo 测试</description>
-
+    <properties>
+        <spring.mybatis.mini>1.6-SNAPSHOT</spring.mybatis.mini>
+        <mysql-connector-java.version>8.0.15</mysql-connector-java.version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -60,7 +63,7 @@
         <dependency>
             <groupId>com.vonchange.common</groupId>
             <artifactId>spring-data-mybatis-mini</artifactId>
-            <version>1.6-SNAPSHOT</version>
+            <version>${spring.mybatis.mini}</version>
         </dependency>
         <dependency>
             <groupId>com.h2database</groupId>
