@@ -13,7 +13,6 @@ import java.util.Date;
 //@AllArgsConstructor
 //@NoArgsConstructor
 @Table(name = "user_base")
-//@DataSourceKey("dataSourceRead")
 public class UserBaseDO {
     @Id
     private Long id;
