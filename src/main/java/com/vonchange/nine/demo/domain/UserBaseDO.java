@@ -6,14 +6,12 @@ import com.vonchange.mybatis.tpl.annotation.UpdateIfNull;
 import com.vonchange.mybatis.tpl.annotation.UpdateNotNull;
 
 import javax.persistence.Id;
-import javax.persistence.Table;
 import java.util.Date;
 
 //@Data
 //@AllArgsConstructor
 //@NoArgsConstructor
-@Table(name = "user_base")
-//@DataSourceKey("dataSourceRead")
+//@Table(name = "user_base")
 public class UserBaseDO {
     @Id
     private Long id;

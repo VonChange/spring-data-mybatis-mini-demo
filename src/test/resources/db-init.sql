@@ -1,5 +1,6 @@
 SET MODE=MySQL;
 SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE IF EXISTS `user_base`;
 CREATE TABLE `user_base` (
   `id` bigint(13) NOT NULL AUTO_INCREMENT COMMENT 'id序列，自增',
   `user_name` varchar(30) DEFAULT NULL COMMENT '用户名',
