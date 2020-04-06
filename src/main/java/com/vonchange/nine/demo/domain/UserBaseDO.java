@@ -5,6 +5,7 @@ import com.vonchange.mybatis.tpl.annotation.UpdateDuplicateKeyIgnore;
 import com.vonchange.mybatis.tpl.annotation.UpdateIfNull;
 import com.vonchange.mybatis.tpl.annotation.UpdateNotNull;
 
+import javax.persistence.Id;
 import java.util.Date;
 
 //@Data
@@ -12,7 +13,7 @@ import java.util.Date;
 //@NoArgsConstructor
 //@Table(name = "user_base")
 public class UserBaseDO {
-    //@Id
+    @Id
     private Long id;
     private String userName;
     private String  firstPhone;

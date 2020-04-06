@@ -156,6 +156,9 @@ public class UserBaseRepositoryTest {
         log.info("time {}",System.currentTimeMillis()-start);
     }
 
+    /**
+     * h2 会报错 mysql 不会
+     */
     @Test
     //@Transactional
     public void insertBatchDuplicateKey() {
