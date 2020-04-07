@@ -25,7 +25,8 @@ user_name = #{userName} and 1=1
 > 查询用户名 返回1个字段的情况 比如查询行数等
 ```
 -- findUserName
-SELECT first_phone FROM user_base WHERE user_name = #{userName}
+SELECT first_phone FROM user_base 
+WHERE user_name = #{userName}
 ```
 
 
@@ -45,7 +46,7 @@ SELECT * FROM user_base
 ```
 -- findListByIds
 SELECT * FROM user_base <where> 
-{@and user_name <> userName}
+{@and user_name like userName%}
 {@and id in idList}
 {@and create_time < createTime}
 </where>

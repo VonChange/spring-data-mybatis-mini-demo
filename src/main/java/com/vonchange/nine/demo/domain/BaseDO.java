@@ -12,12 +12,9 @@ import java.util.Date;
 //@AllArgsConstructor
 //@NoArgsConstructor
 //@Table(name = "user_base")
-public class UserBaseDO extends BaseDO{
+public class BaseDO {
     @Id
     private Long id;
-    private String userName;
-    private String  firstPhone;
-    //@InsertIfNull("0")
     @UpdateNotNull
     private Integer isDelete;
     @InsertIfNull(function = "now()")
@@ -27,39 +24,16 @@ public class UserBaseDO extends BaseDO{
     @InsertIfNull(function = "now()")
     @UpdateIfNull(function = "now()")
     private Date updateTime;
-    public UserBaseDO(){
+    public BaseDO(){
 
     }
-    public UserBaseDO(Long id,String userName,String firstPhone,Integer isDelete,Date createTime,Date updateTime){
-        this.id=id;
-        this.userName=userName;
-        this.firstPhone=firstPhone;
-        this.isDelete=isDelete;
-        this.createTime=createTime;
-        this.updateTime=updateTime;
-    }
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getFirstPhone() {
-        return firstPhone;
-    }
-
-    public void setFirstPhone(String firstPhone) {
-        this.firstPhone = firstPhone;
     }
 
     public Integer getIsDelete() {
@@ -84,17 +58,5 @@ public class UserBaseDO extends BaseDO{
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    @Override
-    public String toString() {
-        return "UserBaseDO{" +
-                "id=" + id +
-                ", userName='" + userName + '\'' +
-                ", firstPhone='" + firstPhone + '\'' +
-                ", isDelete=" + isDelete +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                '}';
     }
 }

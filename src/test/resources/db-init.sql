@@ -10,7 +10,7 @@ CREATE TABLE `user_base` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-insert into user_base(user_name,first_phone,address,create_time) values ('张三','120','xxx',now());
+insert into user_base(user_name,first_phone,address,create_time) values ('test','120','xxx',now());
 insert into user_base(user_name,first_phone,address,create_time) values ('李4','110','xxx额',now());
 insert into user_base(user_name,first_phone,address,create_time) values ('张三日子','911','xxx是啥',now());
 insert into user_base(user_name,first_phone,address,create_time) values ('test','333','ufo',now());
