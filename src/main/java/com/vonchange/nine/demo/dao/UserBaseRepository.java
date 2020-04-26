@@ -1,6 +1,8 @@
 package com.vonchange.nine.demo.dao;
 
+import com.vonchange.nine.demo.domain.SearchParam;
 import com.vonchange.nine.demo.domain.UserBaseDO;
+import com.vonchange.nine.demo.domain.UserBaseVO;
 import com.vonchange.spring.data.mybatis.mini.jdbc.repository.query.BatchUpdate;
 import com.vonchange.spring.data.mybatis.mini.jdbc.repository.query.ReadDataSource;
 import com.vonchange.spring.data.mybatis.mini.jdbc.repository.support.BaseRepository;
@@ -13,14 +15,17 @@ import java.util.List;
 
 
 //@DataSourceKey("dataSourceRead")
-//@SqlPackage("sql.sql")
 public interface UserBaseRepository extends BaseRepository<UserBaseDO, Long> {
 
   @ReadDataSource
-  List<UserBaseDO> findList(@org.apache.ibatis.annotations.Param("userName") String userName,
-                          @org.apache.ibatis.annotations.Param("createTime") Date createTime);
+  List<UserBaseDO> findList(@Param("userName") String userName,
+                            @Param("createTime") Date createTime);
   Page<UserBaseDO> findList(Pageable pageable, @Param("userName") String userName,@Param("createTime") Date createTime);
   String findUserName(@Param("userName") String userName);
+  List<UserBaseVO> findListVo(@Param("userName") String userName,
+                              @Param("createTime") Date createTime);
+
+  List<UserBaseDO> findListByBean(@Param("param") SearchParam searchParam);
 
   List<UserBaseDO> findListByIds(@Param("userName") String userName,
                            @Param("createTime") Date createTime,@Param("idList")List<Long> idList);

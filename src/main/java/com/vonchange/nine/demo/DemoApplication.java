@@ -6,7 +6,6 @@ import com.vonchange.spring.data.mybatis.mini.jdbc.repository.config.EnableMybat
 
 //@SpringBootApplication(exclude={JdbcConfiguration.class})
 @SpringBootApplication
-//@ComponentScan(basePackages={"com.vonchange"})
 //@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 @EnableMybatisMini
 public class DemoApplication {

@@ -1,6 +1,8 @@
 package com.vonchange.nine.demo.dao;
 
+import com.vonchange.nine.demo.domain.SearchParam;
 import com.vonchange.nine.demo.domain.UserBaseDO;
+import com.vonchange.nine.demo.domain.UserBaseVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -38,6 +40,22 @@ public class UserBaseRepositoryTest {
         });
     }
 
+    @Test
+    public void findListByBean() {
+        SearchParam searchParam = new SearchParam();
+        searchParam.setUserName("张三日子");
+        List<UserBaseDO> userBaseDOList = userBaseRepository.findListByBean(searchParam);
+        userBaseDOList.forEach(userBaseDO -> {
+            log.info("\n {}",userBaseDO.toString());
+        });
+    }
+    @Test
+    public void findListVo() {
+        List<UserBaseVO> userBaseVOList = userBaseRepository.findListVo("张三日子",null);
+        userBaseVOList.forEach(userBaseVO -> {
+            log.info("\n {}",userBaseVO.toString());
+        });
+    }
     @Test
     public void findListByPage() {
         Pageable pageable = new PageRequest(0,3);
