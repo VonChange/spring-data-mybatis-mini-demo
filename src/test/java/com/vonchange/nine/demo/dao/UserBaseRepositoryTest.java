@@ -77,8 +77,8 @@ public class UserBaseRepositoryTest {
     public void insert() {
         UserBaseDO userBaseDO = new UserBaseDO();
         userBaseDO.setUserName("test");
-        Long  id  = userBaseRepository.insert(userBaseDO);
-        log.info("\nresult {}",id);
+        int  result  = userBaseRepository.insert(userBaseDO);
+        log.info("\nresult {}",result);
     }
 
     @Test
@@ -86,8 +86,8 @@ public class UserBaseRepositoryTest {
         UserBaseDO userBaseDO = new UserBaseDO();
         userBaseDO.setUserName("UUUUU");
         userBaseDO.setFirstPhone("110");
-        Long  id  = userBaseRepository.insertDuplicateKey(userBaseDO);
-        log.info("\nresult {}",id);
+        int  result  = userBaseRepository.insertDuplicateKey(userBaseDO);
+        log.info("\nresult {}",result);
     }
     @Test
     //@Transactional
