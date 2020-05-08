@@ -16,10 +16,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 
 @RunWith(SpringRunner.class)
@@ -34,7 +37,7 @@ public class UserBaseRepositoryTest {
 
     @Test
     public void findList() {
-        List<UserBaseDO> userBaseDOList = userBaseRepository.findList("张三日子",null);
+        List<UserBaseDO> userBaseDOList = userBaseRepository.findList("张三日子",LocalDateTime.now().plusHours(1L));
         userBaseDOList.forEach(userBaseDO -> {
             log.info("\n {}",userBaseDO.toString());
         });
@@ -51,7 +54,7 @@ public class UserBaseRepositoryTest {
     }
     @Test
     public void findListVo() {
-        List<UserBaseVO> userBaseVOList = userBaseRepository.findListVo("张三日子",null);
+        List<UserBaseVO> userBaseVOList = userBaseRepository.findListVo("张三日子",new Date());
         userBaseVOList.forEach(userBaseVO -> {
             log.info("\n {}",userBaseVO.toString());
         });
@@ -92,20 +95,30 @@ public class UserBaseRepositoryTest {
         log.info("result {}",result);
     }
     @Test
-    public void insert() {
+    public void insert() throws IOException {
         UserBaseDO userBaseDO = new UserBaseDO();
+        //userBaseDO.setId(3L);
         userBaseDO.setUserName("test");
-        Long  id  = userBaseRepository.insert(userBaseDO);
-        log.info("\nresult {}",id);
+        userBaseDO.setCode(UUID.randomUUID().toString());
+        //userBaseDO.setHeadImageData(FileUtils.readFileToByteArray(new File("/Users/vonchange/work/docment/cat.jpg")));
+       // userBaseDO.setCode("1");
+        //userBaseDO.setCreateTime(LocalDateTime.now().plusHours(1L));
+        int result  = userBaseRepository.insert(userBaseDO);
+        log.info("\nresult {} {} ",result,userBaseDO.toString());
+        UserBaseDO userBaseDOFind =userBaseRepository.findById(userBaseDO.getId());
+        //FileUtils.writeByteArrayToFile(new File("/Users/vonchange/work/docment/catcc.jpg"),userBaseDOFind.getHeadImageData());
+        log.info("\nuserBaseDOFind {}",userBaseDOFind.toString());
     }
+
 
     @Test
     public void insertDuplicateKey() {
         UserBaseDO userBaseDO = new UserBaseDO();
         userBaseDO.setUserName("UUUUU");
-        userBaseDO.setFirstPhone("110");
-        Long  id  = userBaseRepository.insertDuplicateKey(userBaseDO);
-        log.info("\nresult {}",id);
+        userBaseDO.setMobilePhone("110");
+        int result  = userBaseRepository.insertDuplicateKey(userBaseDO);
+        log.info("\nresult {} {}",result,userBaseDO.getId());
+
     }
     @Test
     //@Transactional
@@ -116,8 +129,8 @@ public class UserBaseRepositoryTest {
         userBaseDO.setId(1L);
         int result  = userBaseRepository.update(userBaseDO);
         log.info("\nresult {}",result);
-        UserBaseDO userBaseDOFind =userBaseRepository.findById(1L);
-        log.info("\nuserBaseDOFind {}",userBaseDOFind.toString());
+        //UserBaseDO userBaseDOFind =userBaseRepository.findById(1L);
+        //log.info("\nuserBaseDOFind {}",userBaseDOFind.toString());
     }
 
     @Test
@@ -167,7 +180,7 @@ public class UserBaseRepositoryTest {
         long start = System.currentTimeMillis();
         List<UserBaseDO> list = new ArrayList<>();
         for (int i=0;i<6;i++) {
-            list.add(new UserBaseDO(null,"冯e"+i,"1100"+i,null,new Date(),null));
+            list.add(new UserBaseDO(null,"冯e"+i,"1100"+i,null, LocalDateTime.now(),null));
         }
         int resultx = userBaseRepository.insertBatch(list);
         log.info("result {}",resultx);
@@ -185,7 +198,7 @@ public class UserBaseRepositoryTest {
         long start = System.currentTimeMillis();
         List<UserBaseDO> list = new ArrayList<>();
         for (int i=0;i<9000;i++) {
-            list.add(new UserBaseDO(null,"我为我的e"+i,"1100"+i,null,new Date(),null));
+            list.add(new UserBaseDO(null,"我为我的e"+i,"1100"+i,null,LocalDateTime.now(),null));
         }
         int resultx = userBaseRepository.insertBatchDuplicateKey(list);
         log.info("result {}",resultx);

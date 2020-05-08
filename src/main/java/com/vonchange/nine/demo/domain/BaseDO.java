@@ -24,9 +24,12 @@ public class BaseDO {
     @InsertIfNull(function = "now()")
     @UpdateIfNull(function = "now()")
     private Date updateTime;
+
     public BaseDO(){
 
     }
+
+
 
     public Long getId() {
         return id;

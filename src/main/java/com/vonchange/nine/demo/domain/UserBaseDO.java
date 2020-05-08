@@ -1,43 +1,58 @@
 package com.vonchange.nine.demo.domain;
 
 import com.vonchange.mybatis.tpl.annotation.InsertIfNull;
-import com.vonchange.mybatis.tpl.annotation.UpdateDuplicateKeyIgnore;
 import com.vonchange.mybatis.tpl.annotation.UpdateIfNull;
 import com.vonchange.mybatis.tpl.annotation.UpdateNotNull;
 
+import javax.persistence.Column;
 import javax.persistence.Id;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 //@Data
 //@AllArgsConstructor
 //@NoArgsConstructor
 //@Table(name = "user_base")
-public class UserBaseDO extends BaseDO{
+public class UserBaseDO {
+
+    //@GeneratedValue
     @Id
     private Long id;
+    //@InsertIfNull(function = "REPLACE(UUID(), '-', '')")
+    private String code;
+    @Column(name="user_name")
     private String userName;
-    private String  firstPhone;
+    private String  mobilePhone;
     //@InsertIfNull("0")
     @UpdateNotNull
     private Integer isDelete;
     @InsertIfNull(function = "now()")
     @UpdateNotNull
-    private Date createTime;
-    @UpdateDuplicateKeyIgnore
+    private LocalDateTime createTime;
+    //@UpdateDuplicateKeyIgnore
     @InsertIfNull(function = "now()")
     @UpdateIfNull(function = "now()")
     private Date updateTime;
+    private EnumDelete enumDelete;
+    private byte[] headImageData;
     public UserBaseDO(){
 
     }
-    public UserBaseDO(Long id,String userName,String firstPhone,Integer isDelete,Date createTime,Date updateTime){
+    public UserBaseDO(Long id,String userName,String mobilePhone,Integer isDelete,LocalDateTime createTime,Date updateTime){
         this.id=id;
         this.userName=userName;
-        this.firstPhone=firstPhone;
+        this.mobilePhone=mobilePhone;
         this.isDelete=isDelete;
         this.createTime=createTime;
         this.updateTime=updateTime;
     }
+
+    public EnumDelete getEnumDelete() {
+        return enumDelete;
+    }
+
+
+
     public Long getId() {
         return id;
     }
@@ -54,12 +69,12 @@ public class UserBaseDO extends BaseDO{
         this.userName = userName;
     }
 
-    public String getFirstPhone() {
-        return firstPhone;
+    public String getMobilePhone() {
+        return mobilePhone;
     }
 
-    public void setFirstPhone(String firstPhone) {
-        this.firstPhone = firstPhone;
+    public void setMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
     }
 
     public Integer getIsDelete() {
@@ -68,18 +83,39 @@ public class UserBaseDO extends BaseDO{
 
     public void setIsDelete(Integer isDelete) {
         this.isDelete = isDelete;
+        this.enumDelete=EnumDelete.getValue(isDelete);
     }
 
-    public Date getCreateTime() {
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 
     public Date getUpdateTime() {
         return updateTime;
+    }
+
+    public void setEnumDelete(EnumDelete enumDelete) {
+        this.enumDelete = enumDelete;
+    }
+
+    public byte[] getHeadImageData() {
+        return headImageData;
+    }
+
+    public void setHeadImageData(byte[] headImageData) {
+        this.headImageData = headImageData;
     }
 
     public void setUpdateTime(Date updateTime) {
@@ -90,11 +126,13 @@ public class UserBaseDO extends BaseDO{
     public String toString() {
         return "UserBaseDO{" +
                 "id=" + id +
+                ", code='" + code + '\'' +
                 ", userName='" + userName + '\'' +
-                ", firstPhone='" + firstPhone + '\'' +
+                ", mobilePhone='" + mobilePhone + '\'' +
                 ", isDelete=" + isDelete +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
+                ", enumDelete=" + enumDelete +
                 '}';
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public interface UserBaseRepository extends BaseRepository<UserBaseDO, Long> {
 
   @ReadDataSource
   List<UserBaseDO> findList(@Param("userName") String userName,
-                            @Param("createTime") Date createTime);
+                            @Param("createTime") LocalDateTime createTime);
   Page<UserBaseDO> findList(Pageable pageable, @Param("userName") String userName,@Param("createTime") Date createTime);
   String findUserName(@Param("userName") String userName);
   List<UserBaseVO> findListVo(@Param("userName") String userName,
