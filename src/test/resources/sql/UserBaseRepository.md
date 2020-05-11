@@ -47,7 +47,7 @@ WHERE user_name = #{userName}
 
 > 根据Id列表查询列表 
 ```
--- findListByIds
+-- findListByIdsx
 SELECT * FROM user_base 
 <where>
 <if test="null!=userName"> and user_name <> #{userName} </if>
@@ -57,13 +57,15 @@ SELECT * FROM user_base
 
 ```
 
-> 根据Id列表查询列表 简写if 和in查询
+>  {@and create_time < createTime}
+
+> 根据Id列表查询列表 简写if 和in查询 可混用
 ```
 -- findListByIds
 SELECT * FROM user_base <where> 
 {@and user_name like userName%}
-{@and id in idList}
-{@and create_time < createTime}
+{@and id in idList} 
+<if test="null!=createTime">  and create_time < #{createTime}  </if>
 </where>
 ```
 

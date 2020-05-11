@@ -179,7 +179,7 @@ public class UserBaseRepositoryTest {
         log.info("result {}",result);
         long start = System.currentTimeMillis();
         List<UserBaseDO> list = new ArrayList<>();
-        for (int i=0;i<6;i++) {
+        for (int i=0;i<10000;i++) {
             list.add(new UserBaseDO(null,"冯e"+i,"1100"+i,null, LocalDateTime.now(),null));
         }
         int resultx = userBaseRepository.insertBatch(list);
