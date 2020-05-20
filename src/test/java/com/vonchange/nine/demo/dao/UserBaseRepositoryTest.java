@@ -74,6 +74,21 @@ public class UserBaseRepositoryTest {
         String userName = userBaseRepository.findUserName("test");
         log.info("\n userName {}",userName);
     }
+
+    @Test
+    public void findById() {
+        UserBaseDO userBaseDO = userBaseRepository.findById(1L);
+        log.info("\n userBaseDO {}",userBaseDO);
+    }
+
+    @Test
+    public void findByXX() {
+        List<UserBaseDO> userBaseDOList = userBaseRepository.findByUserName("test");
+        userBaseDOList.forEach(userBaseDO -> {
+            log.info("\n userBaseDO {}",userBaseDO);
+        });
+
+    }
     @Test
     public void findListByIds() {
         List<UserBaseDO> userBaseDOListQ = userBaseRepository.findListByIds("test",null,null);

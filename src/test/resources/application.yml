@@ -15,11 +15,18 @@ spring:
       idle-timeout: 60000
       max-lifetime: 600000
       leak-detection-threshold: 20000
+  jpa:
+    database: MySQL
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: none
 
 
 logback:
   aliyun:
    endpoint: cn-hangzhou.log.aliyuncs.com
+
 
 
 

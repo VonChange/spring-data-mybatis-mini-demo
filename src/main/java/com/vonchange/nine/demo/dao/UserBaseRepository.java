@@ -37,4 +37,6 @@ public interface UserBaseRepository extends BaseRepository<UserBaseDO, Long> {
   int batchUpdate(List<UserBaseDO> list);
 
   int updateTest(@Param("list")List<UserBaseDO> list);
+
+  List<UserBaseDO> findByUserName(String test);
 }
