@@ -14,7 +14,7 @@
     <name>spring-data-mybatis-mini-demo</name>
     <description>spring-data-mybatis-mini-demo 测试</description>
     <properties>
-        <spring.mybatis.mini>2.2.2</spring.mybatis.mini>
+        <spring.mybatis.mini>2.2.3</spring.mybatis.mini>
      <!--   <spring.mybatis.mini>1.6-SNAPSHOT</spring.mybatis.mini>-->
         <mysql-connector-java.version>8.0.15</mysql-connector-java.version>
     </properties>
