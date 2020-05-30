@@ -1,7 +1,7 @@
 SET MODE=MySQL;
 SET FOREIGN_KEY_CHECKS=0;
--- CREATE ALIAS UUID FOR "com.vonchange.nine.demo.util.H2DBFunctionExt.uuid";
-CREATE TABLE `user_base` (
+drop table if exists `user_base`;
+CREATE TABLE IF NOT EXISTS `user_base` (
   `id` bigint(13) NOT NULL AUTO_INCREMENT COMMENT 'id序列，自增',
   `code` varchar(36) DEFAULT NULL COMMENT '编码',
   `user_name` varchar(30) DEFAULT NULL COMMENT '用户名',
