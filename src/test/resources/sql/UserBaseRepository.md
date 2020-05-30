@@ -25,8 +25,8 @@ where {@sql findListWhereSql}
 -- findListByBean
 select * from user_base
 <where> 
-{@and user_name = param.userName}
-{@and create_time  <= param.createTime}
+[@and user_name = param.userName]
+[@and create_time  <= param.createTime]
 </where>
 ```
 
@@ -34,7 +34,7 @@ select * from user_base
 ```
 -- findListWhereSql
 user_name = #{userName} and 1=1
-{@and create_time  < createTime}
+[@and create_time  < createTime]
 ```
 
 > 查询用户名 返回1个字段的情况 比如查询行数等
@@ -57,14 +57,16 @@ SELECT * FROM user_base
 
 ```
 
->  {@and create_time < createTime}
+>  [@and create_time < createTime]
 
 > 根据Id列表查询列表 简写if 和in查询 可混用
 ```
 -- findListByIds
-SELECT * FROM user_base <where> 
-{@and user_name like userName%}
-{@and id in idList} 
+SELECT * FROM user_base 
+<where> 
+[@and id in #{idList:in} and user_name like #{userName:like}]
+[@and user_name like userName%]
+[@and id in idList]
 <if test="null!=createTime">  and create_time < #{createTime}  </if>
 </where>
 ```
