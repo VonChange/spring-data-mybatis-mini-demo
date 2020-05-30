@@ -18,7 +18,7 @@ where {@sql findListWhereSql}
 ```
 -- findListVo
 select * from user_base
-where {@sql findListWhereSql}
+where [@sql findListWhereSql]
 ```
 
 ```

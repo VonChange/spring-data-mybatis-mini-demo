@@ -55,7 +55,7 @@ public class JdbcQueryServiceImplTest {
                 "```\n" +
                 "-- main\n" +
                 "select * from user_base\n" +
-                "where {@sql findListWhereSql}\n" +
+                "where [@sql findListWhereSql]\n" +
                 "```\n" +
                 "\n" +
                 "> sql 片段\n" +
