@@ -12,20 +12,21 @@ and create_time  <= #{createTime}
 ```
 -- findList
 select * from user_base
-where {@sql findListWhereSql}
+where [@sql findListWhereSql]
 ```
 
 > sql 片段
 ```
 -- findListWhereSql
 user_name = #{userName} and 1=1
-{@and create_time  < createTime}
+[@and create_time  < createTime]
 ```
 
 > 查询用户名 返回1个字段的情况 比如查询行数等
 ```
 -- findUserName
-SELECT first_phone FROM user_base WHERE user_name = #{userName}
+SELECT first_phone FROM user_base 
+WHERE user_name = #{userName}
 ```
 
 
@@ -41,13 +42,14 @@ SELECT * FROM user_base
 
 ```
 
-> 根据Id列表查询列表 简写if 和in查询
+> 根据Id列表查询列表 简写if 和in查询 可混用
 ```
 -- findListByIds
-SELECT * FROM user_base <where> 
-{@and user_name <> userName}
-{@and id in idList}
-{@and create_time < createTime}
+SELECT * FROM user_base 
+<where> 
+[@and user_name like userName%]
+[@and id in idList]
+<if test="null!=createTime">  and create_time < #{createTime}  </if>
 </where>
 ```
 
