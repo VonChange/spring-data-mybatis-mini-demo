@@ -2,6 +2,7 @@ package com.vonchange.nine.demo.dao;
 
 import com.vonchange.nine.demo.domain.UserBaseDO;
 import com.vonchange.spring.data.mybatis.mini.jdbc.repository.support.BaseQueryRepository;
+import org.springframework.data.repository.query.Param;
 
 import java.util.Date;
 import java.util.List;
@@ -10,6 +11,6 @@ import java.util.List;
 
 public interface UserBaseQueryRepository extends BaseQueryRepository {
 
-  List<UserBaseDO> findList(@org.apache.ibatis.annotations.Param("userName") String userName,
-                            @org.apache.ibatis.annotations.Param("createTime") Date createTime);
+  List<UserBaseDO> findList(@Param("userName") String userName,
+                            @Param("createTime") Date createTime);
 }

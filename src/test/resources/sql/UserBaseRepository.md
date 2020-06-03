@@ -25,7 +25,8 @@ where [@sql findListWhereSql]
 -- findListByBean
 select * from user_base
 <where> 
-[@and user_name = param.userName]
+[@and user_name like param.userName]
+[@and user_name like param.userName%]
 [@and create_time  <= param.createTime]
 </where>
 ```
