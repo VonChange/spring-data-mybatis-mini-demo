@@ -17,8 +17,8 @@ import java.util.List;
 public interface UserBaseRepository extends BaseRepository<UserBaseDO, Long> {
 
   @ReadDataSource
-  List<UserBaseDO> findList(@org.apache.ibatis.annotations.Param("userName") String userName,
-                          @org.apache.ibatis.annotations.Param("createTime") Date createTime);
+  List<UserBaseDO> findList(@Param("userName") String userName,
+                          @Param("createTime") Date createTime);
   Page<UserBaseDO> findList(Pageable pageable, @Param("userName") String userName,@Param("createTime") Date createTime);
   String findUserName(@Param("userName") String userName);
 
