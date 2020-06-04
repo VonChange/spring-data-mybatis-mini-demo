@@ -85,7 +85,7 @@ public class UserBaseRepositoryTest {
     public void insertDuplicateKey() {
         UserBaseDO userBaseDO = new UserBaseDO();
         userBaseDO.setUserName("UUUUU");
-        userBaseDO.setFirstPhone("110");
+        userBaseDO.setMobilePhone("110");
         int  result  = userBaseRepository.insertDuplicateKey(userBaseDO);
         log.info("\nresult {}",result);
     }

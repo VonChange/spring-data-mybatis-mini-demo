@@ -16,7 +16,7 @@ public class UserBaseDO {
     @Id
     private Long id;
     private String userName;
-    private String  firstPhone;
+    private String  mobilePhone;
     //@InsertIfNull("0")
     @UpdateNotNull
     private Integer isDelete;
@@ -30,10 +30,10 @@ public class UserBaseDO {
     public UserBaseDO(){
 
     }
-    public UserBaseDO(Long id,String userName,String firstPhone,Integer isDelete,Date createTime,Date updateTime){
+    public UserBaseDO(Long id,String userName,String mobilePhone,Integer isDelete,Date createTime,Date updateTime){
         this.id=id;
         this.userName=userName;
-        this.firstPhone=firstPhone;
+        this.mobilePhone=mobilePhone;
         this.isDelete=isDelete;
         this.createTime=createTime;
         this.updateTime=updateTime;
@@ -54,12 +54,12 @@ public class UserBaseDO {
         this.userName = userName;
     }
 
-    public String getFirstPhone() {
-        return firstPhone;
+    public String getMobilePhone() {
+        return mobilePhone;
     }
 
-    public void setFirstPhone(String firstPhone) {
-        this.firstPhone = firstPhone;
+    public void setMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
     }
 
     public Integer getIsDelete() {
@@ -91,7 +91,7 @@ public class UserBaseDO {
         return "UserBaseDO{" +
                 "id=" + id +
                 ", userName='" + userName + '\'' +
-                ", firstPhone='" + firstPhone + '\'' +
+                ", mobilePhone='" + mobilePhone + '\'' +
                 ", isDelete=" + isDelete +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
