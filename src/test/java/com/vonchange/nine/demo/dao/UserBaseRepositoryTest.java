@@ -44,6 +44,14 @@ public class UserBaseRepositoryTest {
     }
 
     @Test
+    public void findListBase() {
+        List<UserBaseDO> userBaseDOList = userBaseRepository.findListBase("张三日子");
+        userBaseDOList.forEach(userBaseDO -> {
+            log.info("\n {}",userBaseDO.toString());
+        });
+    }
+
+    @Test
     public void findListByBean() {
         SearchParam searchParam = new SearchParam();
         searchParam.setUserName("张三日子");

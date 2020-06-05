@@ -7,6 +7,11 @@ where user_name = #{userName}
 and create_time  <= #{createTime}
 ```
 
+```
+-- findListBase
+select * from user_base  where user_name = #{userName}
+```
+
 > 查询用户列表 含sql 片段
 
 ```
