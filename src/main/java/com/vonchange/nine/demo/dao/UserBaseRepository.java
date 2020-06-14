@@ -18,6 +18,7 @@ import java.util.List;
 //@DataSourceKey("dataSourceRead")
 public interface UserBaseRepository extends BaseRepository<UserBaseDO, Long> {
   List<UserBaseDO> findListBase(@Param("userName") String userName);
+  UserBaseDO findOne(@Param("userName") String userName);
   @ReadDataSource
   List<UserBaseDO> findList(@Param("userName") String userName,
                             @Param("createTime") LocalDateTime createTime);

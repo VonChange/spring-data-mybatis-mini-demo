@@ -12,6 +12,12 @@ and create_time  <= #{createTime}
 select * from user_base  where user_name = #{userName}
 ```
 
+
+```
+-- findOne
+select * from user_base
+where user_name = #{userName}
+```
 > 查询用户列表 含sql 片段
 
 ```

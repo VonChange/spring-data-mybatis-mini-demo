@@ -44,6 +44,12 @@ public class UserBaseRepositoryTest {
     }
 
     @Test
+    public void findOne() {
+        UserBaseDO userBaseDO = userBaseRepository.findOne("test");
+        log.info("\n {}",userBaseDO.toString());
+    }
+
+    @Test
     public void findListBase() {
         List<UserBaseDO> userBaseDOList = userBaseRepository.findListBase("张三日子");
         userBaseDOList.forEach(userBaseDO -> {
