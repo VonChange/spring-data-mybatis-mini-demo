@@ -274,7 +274,7 @@ public class UserBaseRepositoryTest {
 
         long start = System.currentTimeMillis();
         List<UserBaseDO> list = new ArrayList<>();
-        for (int i=0;i<10006;i++) {
+        for (int i=0;i<10016;i++) {
             list.add(new UserBaseDO(null,"三e"+i,"1100"+i,null, LocalDateTime.now(),null));
         }
         int resultx = userBaseRepository.insertBatch(list,5000);
