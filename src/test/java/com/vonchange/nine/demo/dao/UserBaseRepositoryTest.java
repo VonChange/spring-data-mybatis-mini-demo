@@ -1,5 +1,6 @@
 package com.vonchange.nine.demo.dao;
 
+import com.vonchange.jdbc.abstractjdbc.handler.AbstractPageWork;
 import com.vonchange.nine.demo.domain.SearchParam;
 import com.vonchange.nine.demo.domain.UserBaseDO;
 import com.vonchange.nine.demo.domain.UserBaseVO;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 
@@ -170,36 +172,11 @@ public class UserBaseRepositoryTest {
         int result  = userBaseRepository.updateAllField(userBaseDO);
         log.info("\nresult {}",result);
     }
-    @Test
-    public void updateBatch() {
-        int result  = userBaseRepository.update(new UserBaseDO(1L,"testxx","",1,null,null));
-        log.info("result {}",result);
-        long start = System.currentTimeMillis();
-        List<UserBaseDO> list = new ArrayList<>();
-        for (int i=0;i<3;i++) {
-            list.add(new UserBaseDO(1L+i,"ttt"+i,null,1,null,new Date()));
-        }
-        int resultx = userBaseRepository.updateBatch(list);
-        log.info("result {}",resultx);
-        log.info("time {}",System.currentTimeMillis()-start);
-    }
 
-    @Test
-    public void updateBatchAllField() {
-        int result  = userBaseRepository.update(new UserBaseDO(1L,"testxx","",1,null,null));
-        log.info("result {}",result);
-        long start = System.currentTimeMillis();
-        List<UserBaseDO> list = new ArrayList<>();
-        for (int i=0;i<3;i++) {
-            list.add(new UserBaseDO(1L+i,"uuu"+i,null,null,null,new Date()));
-        }
-        int resultx = userBaseRepository.updateBatchAllField(list);
-        log.info("result {}",resultx);
-        log.info("time {}",System.currentTimeMillis()-start);
-    }
+    //13
 
     /**
-     * h2 会报错 mysql 不会
+     * 批量插入
      */
     @Test
     @Transactional
@@ -211,28 +188,35 @@ public class UserBaseRepositoryTest {
         for (int i=0;i<10000;i++) {
             list.add(new UserBaseDO(null,"冯e"+i,"1100"+i,null, LocalDateTime.now(),null));
         }
-        int resultx = userBaseRepository.insertBatch(list);
+        int resultx = userBaseRepository.insertBatch(list,5000);
+        log.info("id {}",list.get(0).getId());
         log.info("result {}",resultx);
-        log.info("time {}",System.currentTimeMillis()-start);
+        log.info("time {}",System.currentTimeMillis()-start);//1554
     }
 
+
+
     /**
-     * h2 会报错 mysql 不会
+     * 批量插入
      */
     @Test
-    //@Transactional
+    @Transactional
     public void insertBatchDuplicateKey() {
         int result  = userBaseRepository.update(new UserBaseDO(1L,"testxx","",1,null,null));
         log.info("result {}",result);
         long start = System.currentTimeMillis();
         List<UserBaseDO> list = new ArrayList<>();
-        for (int i=0;i<9000;i++) {
-            list.add(new UserBaseDO(null,"我为我的e"+i,"1100"+i,null,LocalDateTime.now(),null));
+        for (int i=0;i<10000;i++) {
+            list.add(new UserBaseDO(null,"冯e"+i,"1100"+i,null, LocalDateTime.now(),null));
         }
-        int resultx = userBaseRepository.insertBatchDuplicateKey(list);
+        int resultx = userBaseRepository.insertBatchDuplicateKey(list,5000);
+        log.info("id {}",list.get(0).getId());
         log.info("result {}",resultx);
-        log.info("time {}",System.currentTimeMillis()-start);
+        int resulty = userBaseRepository.insertBatchDuplicateKey(list,5000);
+        log.info("result {}",resulty);
+        log.info("time {}",System.currentTimeMillis()-start);//1554
     }
+
     @Test
     //@Transactional
     //@Rollback
@@ -247,5 +231,71 @@ public class UserBaseRepositoryTest {
         int resultx  = userBaseRepository.batchUpdate(list);
         log.info("resultx {}",resultx);
         log.info("time {}",System.currentTimeMillis()-start);
+    }
+
+    @Test
+    @Transactional
+    //@Rollback
+    public void insertBatchNormal() {
+        int result  = userBaseRepository.update(new UserBaseDO(1L,"testxx","",1,null,null));
+        log.info("result {}",result);
+        long start = System.currentTimeMillis();
+        List<UserBaseDO> list = new ArrayList<>();
+        for (int i=0;i<10000;i++) {
+            list.add(new UserBaseDO(null,"冯e"+i,"1100"+i,null, LocalDateTime.now(),null));
+        }
+        int resultx  = userBaseRepository.insertBatchNormal(list);
+        System.out.println(list.get(0).getId());
+        log.info("resultx {}",resultx);
+        log.info("time {}",System.currentTimeMillis()-start);//908
+    }
+
+    @Test
+    @Transactional
+    //@Rollback
+    public void bachUpdate() {
+        int result  = userBaseRepository.update(new UserBaseDO(1L,"testxx","",1,null,null));
+        log.info("result {}",result);
+        long start = System.currentTimeMillis();
+        List<UserBaseDO> list = new ArrayList<>();
+        for (int i=0;i<10000;i++) {
+            list.add(new UserBaseDO(null,"冯e"+i,"1100"+i,null, LocalDateTime.now(),null));
+        }
+        int resultx  = userBaseRepository.batchInsert(list);
+        System.out.println(list.get(0).getId());
+        log.info("resultx {}",resultx);
+        log.info("time {}",System.currentTimeMillis()-start);//563
+    }
+
+
+    @Test
+    @Transactional
+    public void findBigData() {
+
+        long start = System.currentTimeMillis();
+        List<UserBaseDO> list = new ArrayList<>();
+        for (int i=0;i<16;i++) {
+            list.add(new UserBaseDO(null,"冯e"+i,"1100"+i,null, LocalDateTime.now(),null));
+        }
+        int resultx = userBaseRepository.insertBatch(list,5000);
+        log.info("id {}",list.get(0).getId());
+        log.info("result {}",resultx);
+        log.info("time {}",System.currentTimeMillis()-start);//1554
+        AbstractPageWork<UserBaseDO> abstractPageWork = new AbstractPageWork<UserBaseDO>() {
+            @Override
+            protected void doPage(List<UserBaseDO> pageContentList, int pageNum, Map<String, Object> extData) {
+                pageContentList.forEach(userBaseDO -> {
+                    log.info("{}",userBaseDO.toString());
+                });
+
+            }
+
+            @Override
+            protected int getPageSize() {
+                return 500;
+            }
+        };
+       userBaseRepository.findBigData(abstractPageWork,"冯");
+        log.info("{} {} {}",abstractPageWork.getSize(),abstractPageWork.getTotalPages(),abstractPageWork.getTotalElements());
     }
 }

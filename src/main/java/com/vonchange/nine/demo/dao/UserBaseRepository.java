@@ -1,5 +1,6 @@
 package com.vonchange.nine.demo.dao;
 
+import com.vonchange.jdbc.abstractjdbc.handler.AbstractPageWork;
 import com.vonchange.nine.demo.domain.SearchParam;
 import com.vonchange.nine.demo.domain.UserBaseDO;
 import com.vonchange.nine.demo.domain.UserBaseVO;
@@ -37,7 +38,14 @@ public interface UserBaseRepository extends BaseRepository<UserBaseDO, Long> {
   @BatchUpdate
   int batchUpdate(List<UserBaseDO> list);
 
+  @BatchUpdate(size = 5000)
+  int batchInsert(List<UserBaseDO> list);
+
   int updateTest(@Param("list")List<UserBaseDO> list);
 
   List<UserBaseDO> findByUserName(String test);
+
+  int insertBatchNormal(@Param("list")List<UserBaseDO> list);
+
+  void findBigData(@Param("")AbstractPageWork<UserBaseDO> abstractPageWork,@Param("userName") String userName);
 }

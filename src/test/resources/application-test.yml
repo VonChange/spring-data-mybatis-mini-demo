@@ -2,6 +2,11 @@ server:
   port: 9001
 
 
+mybatis-mini:
+  dialect: com.vonchange.nine.demo.config.H2Dialect
+  logRead: true
+  logWrite: true
+  logFullSql: true
 
 spring:
   datasource:

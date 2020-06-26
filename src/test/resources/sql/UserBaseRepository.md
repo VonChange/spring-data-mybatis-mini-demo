@@ -42,6 +42,9 @@ select * from user_base
 </where>
 ```
 
+
+
+
 > sql 片段
 ```
 -- findListWhereSql
@@ -95,10 +98,44 @@ update user_base set is_delete = #{isDelete} where id =#{id}
 update user_base set is_delete = IFNULL(#{isDelete},is_delete),user_name =#{userName} where id =#{id}
 ```
 
+
+```
+-- batchInsert
+insert into user_base(`user_name`,`mobile_phone`,create_time) values
+(#{userName},#{mobilePhone},#{createTime}) 
+```
+
 ```
 -- updateTest
 <foreach collection="list" index="index" item="item" >
-insert into user_base(`user_name`,`first_phone`) values (#{item.userName},#{item.firstPhone});
+insert into user_base(`user_name`,`mobile_phone`) values (#{item.userName},#{item.firstPhone});
 </foreach>
 
+```
+
+```
+-- insertBatchNormal
+insert into user_base(`user_name`,`mobile_phone`,create_time) values 
+<foreach collection="list" index="index" item="item" separator="," >
+(#{item.userName},#{item.mobilePhone},#{item.createTime})
+</foreach>
+
+```
+
+```
+-- insertBatchNormalX
+insert into user_base(`id`,`code`,`user_name`,`mobile_phone`,`is_delete`,`create_time`,`update_time`,`head_image_data`) values
+<foreach collection="list" index="index" item="item" separator="," >
+(IFNULL(#{item.id},`id`),IFNULL(#{item.code},`code`),IFNULL(#{item.userName},`user_name`),IFNULL(#{item.mobilePhone},`mobile_phone`)
+,IFNULL(#{item.isDelete},`is_delete`),IFNULL(#{item.createTime},now()),IFNULL(#{item.updateTime},now()),IFNULL(#{item.headImageData},`head_image_data`))
+</foreach>
+```
+
+
+```
+-- findBigData
+select * from user_base
+<where> 
+[@and user_name like userName]
+</where>
 ```
