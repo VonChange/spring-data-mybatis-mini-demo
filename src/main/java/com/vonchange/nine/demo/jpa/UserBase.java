@@ -1,10 +1,11 @@
-package com.vonchange.nine.demo.domain;
+package com.vonchange.nine.demo.jpa;
 
 import com.vonchange.mybatis.tpl.annotation.InsertIfNull;
 import com.vonchange.mybatis.tpl.annotation.UpdateIfNull;
 import com.vonchange.mybatis.tpl.annotation.UpdateNotNull;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
@@ -13,8 +14,9 @@ import java.util.Date;
 //@Data
 //@AllArgsConstructor
 //@NoArgsConstructor
+@Entity
 @Table(name = "user_base")
-public class UserBaseDO {
+public class UserBase {
 
     //@GeneratedValue
     @Id
@@ -34,12 +36,11 @@ public class UserBaseDO {
     @InsertIfNull(function = "now()")
     @UpdateIfNull(function = "now()")
     private Date updateTime;
-    private EnumDelete enumDelete;
     private byte[] headImageData;
-    public UserBaseDO(){
+    public UserBase(){
 
     }
-    public UserBaseDO(Long id,String userName,String mobilePhone,Integer isDelete,LocalDateTime createTime,Date updateTime){
+    public UserBase(Long id, String userName, String mobilePhone, Integer isDelete, LocalDateTime createTime, Date updateTime){
         this.id=id;
         this.userName=userName;
         this.mobilePhone=mobilePhone;
@@ -48,9 +49,7 @@ public class UserBaseDO {
         this.updateTime=updateTime;
     }
 
-    public EnumDelete getEnumDelete() {
-        return enumDelete;
-    }
+
 
 
 
@@ -84,7 +83,6 @@ public class UserBaseDO {
 
     public void setIsDelete(Integer isDelete) {
         this.isDelete = isDelete;
-        this.enumDelete=EnumDelete.getValue(isDelete);
     }
 
     public String getCode() {
@@ -105,10 +103,6 @@ public class UserBaseDO {
 
     public Date getUpdateTime() {
         return updateTime;
-    }
-
-    public void setEnumDelete(EnumDelete enumDelete) {
-        this.enumDelete = enumDelete;
     }
 
     public byte[] getHeadImageData() {
@@ -133,7 +127,6 @@ public class UserBaseDO {
                 ", isDelete=" + isDelete +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
-                ", enumDelete=" + enumDelete +
                 '}';
     }
 }

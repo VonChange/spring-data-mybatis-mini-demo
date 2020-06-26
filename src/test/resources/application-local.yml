@@ -2,7 +2,6 @@ server:
   port: 9001
 
 mybatis-mini:
-  isReadExcludePrimary: false
   isReadAllScopeOpen: false
   logRead: true
   logWrite: true
