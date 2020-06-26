@@ -186,7 +186,7 @@ public class UserBaseRepositoryTest {
         long start = System.currentTimeMillis();
         List<UserBaseDO> list = new ArrayList<>();
         for (int i=0;i<10000;i++) {
-            list.add(new UserBaseDO(null,"冯e"+i,"1100"+i,null, LocalDateTime.now(),null));
+            list.add(new UserBaseDO(null,"三e"+i,"1100"+i,null, LocalDateTime.now(),null));
         }
         int resultx = userBaseRepository.insertBatch(list,5000);
         log.info("id {}",list.get(0).getId());
@@ -207,7 +207,7 @@ public class UserBaseRepositoryTest {
         long start = System.currentTimeMillis();
         List<UserBaseDO> list = new ArrayList<>();
         for (int i=0;i<10000;i++) {
-            list.add(new UserBaseDO(null,"冯e"+i,"1100"+i,null, LocalDateTime.now(),null));
+            list.add(new UserBaseDO(null,"三e"+i,"1100"+i,null, LocalDateTime.now(),null));
         }
         int resultx = userBaseRepository.insertBatchDuplicateKey(list,5000);
         log.info("id {}",list.get(0).getId());
@@ -242,7 +242,7 @@ public class UserBaseRepositoryTest {
         long start = System.currentTimeMillis();
         List<UserBaseDO> list = new ArrayList<>();
         for (int i=0;i<10000;i++) {
-            list.add(new UserBaseDO(null,"冯e"+i,"1100"+i,null, LocalDateTime.now(),null));
+            list.add(new UserBaseDO(null,"三e"+i,"1100"+i,null, LocalDateTime.now(),null));
         }
         int resultx  = userBaseRepository.insertBatchNormal(list);
         System.out.println(list.get(0).getId());
@@ -259,7 +259,7 @@ public class UserBaseRepositoryTest {
         long start = System.currentTimeMillis();
         List<UserBaseDO> list = new ArrayList<>();
         for (int i=0;i<10000;i++) {
-            list.add(new UserBaseDO(null,"冯e"+i,"1100"+i,null, LocalDateTime.now(),null));
+            list.add(new UserBaseDO(null,"三e"+i,"1100"+i,null, LocalDateTime.now(),null));
         }
         int resultx  = userBaseRepository.batchInsert(list);
         System.out.println(list.get(0).getId());
@@ -274,8 +274,8 @@ public class UserBaseRepositoryTest {
 
         long start = System.currentTimeMillis();
         List<UserBaseDO> list = new ArrayList<>();
-        for (int i=0;i<16;i++) {
-            list.add(new UserBaseDO(null,"冯e"+i,"1100"+i,null, LocalDateTime.now(),null));
+        for (int i=0;i<10006;i++) {
+            list.add(new UserBaseDO(null,"三e"+i,"1100"+i,null, LocalDateTime.now(),null));
         }
         int resultx = userBaseRepository.insertBatch(list,5000);
         log.info("id {}",list.get(0).getId());
@@ -295,7 +295,7 @@ public class UserBaseRepositoryTest {
                 return 500;
             }
         };
-       userBaseRepository.findBigData(abstractPageWork,"冯");
+       userBaseRepository.findBigData(abstractPageWork,"三");
         log.info("{} {} {}",abstractPageWork.getSize(),abstractPageWork.getTotalPages(),abstractPageWork.getTotalElements());
     }
 }
