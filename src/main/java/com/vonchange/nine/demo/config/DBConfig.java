@@ -41,7 +41,8 @@ public class DBConfig implements InitializingBean {
         return new ReadDataSources() {
             @Override
             public DataSource[] allReadDataSources() {
-                return new DataSource[]{mainDataSource(),mainDataSource(),readDataSource()};
+                //mainDataSource(),mainDataSource(),
+                return new DataSource[]{readDataSource()};
             }
         };
     }

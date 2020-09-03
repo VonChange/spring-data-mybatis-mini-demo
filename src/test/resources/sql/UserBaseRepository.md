@@ -36,7 +36,7 @@ where [@sql findListWhereSql]
 -- findListByBean
 select * from user_base
 <where> 
-[@and user_name like param.userName]
+[@@and user_name like param.userName]
 [@and user_name like param.userName%]
 [@and create_time  <= param.createTime]
 </where>
@@ -79,7 +79,7 @@ SELECT * FROM user_base
 -- findListByIds
 SELECT * FROM user_base 
 <where> 
-[@and id in #{idList:in} and user_name like #{userName:like}]
+[@@and id in #{idList:in} and user_name like #{userName:like}]
 [@and user_name like userName%]
 [@and id in idList]
 <if test="null!=createTime">  and create_time < #{createTime}  </if>

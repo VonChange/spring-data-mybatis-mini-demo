@@ -43,6 +43,8 @@ public class UserBaseRepositoryTest {
         userBaseDOList.forEach(userBaseDO -> {
             log.info("\n {}",userBaseDO.toString());
         });
+        UserBaseDO userBaseDO = userBaseRepository.findOne("test");
+        log.info("\n {}",userBaseDO.toString());
     }
 
     @Test
@@ -107,7 +109,7 @@ public class UserBaseRepositoryTest {
     }
     @Test
     public void findListByIds() {
-        List<UserBaseDO> userBaseDOListQ = userBaseRepository.findListByIds("test",null,null);
+        List<UserBaseDO> userBaseDOListQ = userBaseRepository.findListByIds("test",null,Arrays.asList(1L,2L));
         userBaseDOListQ.forEach(userBaseDO -> {
             log.info("\n {}",userBaseDO.toString());
         });
