@@ -15,7 +15,7 @@
         <logger name="org.springframework.web.client" level="info" additivity="false">
             <appender-ref ref="STDOUT"/>
         </logger>
-        <logger name="com.vonchange" level="info" additivity="false">
+        <logger name="com.vonchange" level="debug" additivity="false">
             <appender-ref ref="STDOUT"/>
         </logger>
         <root level="info">

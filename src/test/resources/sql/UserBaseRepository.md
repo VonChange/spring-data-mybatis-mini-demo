@@ -23,7 +23,11 @@ where user_name = #{userName}
 ```
 -- findList
 select * from user_base
-where [@sql findListWhereSql]
+where 
+user_name = #{userName} 
+[@@and is_delete = isDelete.value]
+[@@and create_time  < createTime]
+
 ```
 
 ```
@@ -138,4 +142,19 @@ select * from user_base
 <where> 
 [@and user_name like userName]
 </where>
+```
+
+
+```
+-- findLongList
+select id from user_base
+```
+
+```
+-- findInList
+
+select * from user_base
+where 1=1
+[@@and user_name in userNames]
+[@@and is_delete in in isDeletes]
 ```

@@ -1,9 +1,12 @@
 package com.vonchange.nine.demo.dao;
 
 import com.vonchange.jdbc.abstractjdbc.handler.AbstractPageWork;
+import com.vonchange.nine.demo.domain.EnumDelete;
+import com.vonchange.nine.demo.domain.EnumStatus;
 import com.vonchange.nine.demo.domain.SearchParam;
 import com.vonchange.nine.demo.domain.UserBaseDO;
 import com.vonchange.nine.demo.domain.UserBaseVO;
+import com.vonchange.nine.demo.util.JsonUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -39,12 +42,23 @@ public class UserBaseRepositoryTest {
 
     @Test
     public void findList() {
-        List<UserBaseDO> userBaseDOList = userBaseRepository.findList("张三日子",LocalDateTime.now().plusHours(1L));
+        List<UserBaseDO> userBaseDOList = userBaseRepository.findList("test",LocalDateTime.now().plusHours(1L),
+                EnumDelete.unDeleted);
         userBaseDOList.forEach(userBaseDO -> {
-            log.info("\n {}",userBaseDO.toString());
+            log.info("\n {}",JsonUtil.toJson(userBaseDO));
         });
         UserBaseDO userBaseDO = userBaseRepository.findOne("test");
         log.info("\n {}",userBaseDO.toString());
+    }
+
+
+    @Test
+    public void findInList() {
+        List<UserBaseDO> userBaseDOList = userBaseRepository.findInList(Arrays.asList("test"), Arrays.asList(1));
+        userBaseDOList.forEach(userBaseDO -> {
+            log.info("\n {}",JsonUtil.toJson(userBaseDO));
+        });
+
     }
 
     @Test
@@ -108,6 +122,14 @@ public class UserBaseRepositoryTest {
 
     }
     @Test
+    public void findLongList() {
+        List<Long> idList = userBaseRepository.findLongList();
+        idList.forEach(id -> {
+            log.info("\n id {}",id);
+        });
+
+    }
+    @Test
     public void findListByIds() {
         List<UserBaseDO> userBaseDOListQ = userBaseRepository.findListByIds("test",null,Arrays.asList(1L,2L));
         userBaseDOListQ.forEach(userBaseDO -> {
@@ -133,6 +155,8 @@ public class UserBaseRepositoryTest {
         //userBaseDO.setId(3L);
         userBaseDO.setUserName("test");
         userBaseDO.setCode(UUID.randomUUID().toString());
+        userBaseDO.setStatus(EnumStatus.on);
+
         //userBaseDO.setHeadImageData(FileUtils.readFileToByteArray(new File("/Users/vonchange/work/docment/cat.jpg")));
        // userBaseDO.setCode("1");
         //userBaseDO.setCreateTime(LocalDateTime.now().plusHours(1L));
