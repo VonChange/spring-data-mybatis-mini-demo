@@ -54,7 +54,7 @@ public class UserBaseRepositoryTest {
 
     @Test
     public void findInList() {
-        List<UserBaseDO> userBaseDOList = userBaseRepository.findInList(Arrays.asList("test"), Arrays.asList(1));
+        List<UserBaseDO> userBaseDOList = userBaseRepository.findInList(Arrays.asList("test"), Arrays.asList(0));
         userBaseDOList.forEach(userBaseDO -> {
             log.info("\n {}",JsonUtil.toJson(userBaseDO));
         });

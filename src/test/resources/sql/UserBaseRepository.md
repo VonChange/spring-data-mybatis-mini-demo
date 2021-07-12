@@ -156,5 +156,5 @@ select id from user_base
 select * from user_base
 where 1=1
 [@@and user_name in userNames]
-[@@and is_delete in in isDeletes]
+[@@and is_delete in  isDeletes]
 ```
